@@ -35,6 +35,35 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
+
+      function createMobileInputField(inputId) {
+        let inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.id = inputId;
+        inputField.style.position = "absolute";
+        inputField.style.zIndex = "1000";
+        inputField.style.width = "50%";
+        inputField.style.height = "30px";
+        inputField.style.top = "50%";
+        inputField.style.left = "25%";
+
+        inputField.addEventListener("blur", () => {
+            inputField.remove();
+        });
+
+        document.body.appendChild(inputField);
+        inputField.focus();
+    }
+
+    function bindUnityInput() {
+        window.addEventListener("message", function (event) {
+            if (event.data.action === "showKeyboard") {
+                createMobileInputField(event.data.id);
+            }
+        });
+    }
+
+    bindUnityInput();
     </script>
   </body>
 </html>
