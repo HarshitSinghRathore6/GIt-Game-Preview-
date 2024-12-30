@@ -55,13 +55,7 @@
         inputField.focus();
     }
 
-    function bindUnityInput() {
-        window.addEventListener("message", function (event) {
-            if (event.data.action === "showKeyboard") {
-                createMobileInputField(event.data.id);
-            }
-        });
-    }
+    
 
     bindUnityInput();
     </script>
